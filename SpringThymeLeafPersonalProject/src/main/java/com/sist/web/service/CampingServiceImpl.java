@@ -25,5 +25,12 @@ public class CampingServiceImpl implements CampingService {
 		// TODO Auto-generated method stub
 		return mapper.campingTotalPage();
 	}
+
+	@Override
+	public CampingVO campingDetailData(int id) {
+		// TODO Auto-generated method stub
+		mapper.campingHitIncrement(id);
+		return mapper.campingDetailData(id);
+	}
 	
 }

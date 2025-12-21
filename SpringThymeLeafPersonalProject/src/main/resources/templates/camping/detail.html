@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="main-wrapper">
+		<div class="container">
+			<div class="row aln-center" style="margin-top:70px">
+				<table class="table">
+					<tr>
+						<td class="text-center" rowspan="5" width=30%>
+							<img th:src="${vo.image}" style="width:300px;height:250px">
+						</td>
+						<td colspan="2">
+							<h3>[[${vo.name}]]</h3>
+						</td>
+					</tr>
+					<tr>
+						<th width="10%">지역</th>
+						<td width="60%" class="aln-left">[[${vo.region}]]</td>
+					</tr>
+					<tr>
+						<th width="10%">주소</th>
+						<td width="60%" class="aln-left">[[${vo.street_address}]]</td>
+					</tr>
+					<tr>
+						<th width="10%">전화번호</th>
+						<td width="60%" class="aln-left">[[${vo.telephone}]]</td>
+					</tr>
+					<tr>
+						<th width="10%">가격대</th>
+						<td width="60%" class="aln-left">[[${vo.min}]] 원 ~ [[${vo.max}]] 원</td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							[[${vo.description}]]
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="row aln-center" style="margin-top:0px">
+				<h3>리뷰</h3>
+				<table>
+					<tr>
+						<td>
+							<table class="table" v-for="rvo in list">
+								<tr>
+									<td class="text-left" width="80%">
+										((rvo.name))&nbsp;((rvo.dbday))
+									</td>
+									<td class="text-right" width="20%">
+										<span v-if="sessionId === rvo.id">
+											<button type="button" class="btn-xs btn-warning upbtn" 
+												:id="'u'+rvo.no" @click="replyUpdateForm(rvo.no)">
+												수정	
+											</button>
+											<button type="button" class="btn-xs btn-info"
+												@click="replyDelete(rvo.no)">
+												삭제	
+											</button>
+										</span>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-left" colspan="2">
+										<pre style="white-space: pre-wrap;background-color: white;border: none">((rvo.msg))</pre>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<textarea rows="5" cols="70" style="float:left" :id="'umsg'+rvo.no">((rvo.msg))</textarea>
+										<button type="button" class="btn-primary"
+											style="width:100px;height:99px;float:left;"
+											@click="replyUpdate(rvo.no)">
+											댓글 수정
+										</button>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<textarea rows="5" cols="20" style="float:left" v-model="msg" ref="msg"></textarea>
+							<button type="button" class="btn-primary" 
+								style="width:100px;height:99px;float:left" @click="insert()">
+								댓글 쓰기
+							</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+<script>
+const commentApp = Vue.createApp({
+	data() {
+		return {
+			list: [],
+			cno: '[[${vo.id}]]',
+			sessionId: '[[${sessionId}]]',
+			msg: '',
+			type: 1,
+			up: false,
+		}
+	},
+	
+	mounted() {
+		axios.get('http://localhost/comment/list_vue/', {
+			params: {
+				cno: this.cno,
+				type: this.type,
+			}
+		}).then(response => {
+			console.log(response.data)
+			this.list = response.data.list
+			this.cno = response.data.cno
+			this.type = resoponse.data
+		})
+	},
+	
+	methods: {
+		
+	}
+})
+commentApp.config.compilerOptions.delimiters = ['((', '))']
+commentApp.mount("#main-wrapper")
+</script>
+</body>
+</html>

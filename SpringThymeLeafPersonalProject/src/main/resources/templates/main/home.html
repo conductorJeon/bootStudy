@@ -23,7 +23,7 @@
 								<div class="box highlight">
 									<a href="#" class="image left"><img th:src="${cvo.image}" alt="" /></a>
 								</div>
-								<p><span style="size: 1.2em">[[${cvo.name}]]</span><br>[[${cvo.street_address}]]</p>
+								<p><span style="size: 1.5em">[[${cvo.name}]]</span><br>[[${cvo.street_address}]]</p>
 							</section>
 						</div>
 					</div>
@@ -45,12 +45,12 @@
 						<div class="row">
 						
 							<!-- 캠핑용품 이미지 4개 -->
-							<section class="col-6 col-12-narrower">
+							<section class="col-6 col-12-narrower" th:each="cpvo:${cpList}">
 								<div class="box post">
-									<a href="#" class="image left"><img src="images/pic01.jpg" alt="" /></a>
+									<a href="#" class="image left"><img th:src="${cpvo.main_image}" alt="" /></a>
 									<div class="inner">
-										<h3>The First Thing</h3>
-										<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+										<h3>[[${cpvo.name}]]</h3>
+										<p>[[${cpvo.price}]] 원</p>
 									</div>
 								</div>
 							</section>

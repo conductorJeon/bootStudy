@@ -29,6 +29,6 @@ HIT                     NUMBER
 public class CampingVO {
 	private int id, price_min, price_max;
 	private String name, url, image, telephone, street_address, 
-		locality, region, postal_code, country, description, keywords, dbday;
+		locality, region, postal_code, country, description, keywords, dbday, min, max;
 	private Date regdate;
 }

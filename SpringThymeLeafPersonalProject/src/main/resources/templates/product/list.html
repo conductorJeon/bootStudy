@@ -11,10 +11,10 @@
 			<div class="row">
 				<div class="col-md-3" th:each="vo:${list}">
         			<div class="thumbnail">
-          				<a th:href="@{/camping/detail(id=${vo.id})}">
-            			<img th:src="${vo.image}" style="width:240px;height:130px;">
+          				<a href="#">
+            			<img th:src="${vo.main_image}" style="width:240px;height:130px;">
             			<div class="caption">
-              				<p>[[${vo.name}]]</p>
+              				<p>[[${vo.name}]]<br/>[[${vo.price}]] 원</p>
             			</div>
           				</a>
         			</div>
@@ -22,9 +22,9 @@
 			</div>
 			<div class="row aln-center" style="margin-top:10px">
 			  <ul class="pagination text-center">
-			    <li th:if="${startPage > 1}"><a th:href="@{/camping/list(page=${startPage - 1})}">&laquo;</a></li>
-			    <li th:each="i:${#numbers.sequence(startPage, endPage)}" th:class="${curpage == i?'active':''}"><a th:href="@{/camping/list(page=${i})}">[[${i}]]</a></li>
-			    <li th:if="${endPage < totalpage}"><a th:href="@{/camping/list(page=${endPage + 1})}">&raquo;</a></li>
+			    <li th:if="${startPage > 1}"><a th:href="@{/campingproduct/list(page=${startPage - 1})}">&laquo;</a></li>
+			    <li th:each="i:${#numbers.sequence(startPage, endPage)}" th:class="${curpage == i?'active':''}"><a th:href="@{/campingproduct/list(page=${i})}">[[${i}]]</a></li>
+			    <li th:if="${endPage < totalpage}"><a th:href="@{/campingproduct/list(page=${endPage + 1})}">&raquo;</a></li>
 			  </ul>
 			</div>
 		</div>

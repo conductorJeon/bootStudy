@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import com.sist.web.vo.CampingVO;
@@ -15,7 +16,7 @@ public interface CampingMapper {
 		  + "FROM camping "
 		  + "WHERE rownum <= 4"
 		  + "ORDER BY id DESC ")
-	public List<CampingVO> campingMainData();
+	public List<CampingVO> mainCampingData();
 	
 	
 	@Select("SELECT id, name, image "
@@ -26,4 +27,14 @@ public interface CampingMapper {
 	
 	@Select("SELECT CEIL(COUNT(*) / 12.0) FROM camping")
 	public int campingTotalPage();
+	
+	@Update("UPDATE camping SET "
+		  + "hit = hit + 1 "
+		  + "WHERE id = #{id}")
+	public void campingHitIncrement(int id);
+	
+	@Select("SELECT * FROM camping "
+		  + "WHERE id = #{id}")
+	public CampingVO campingDetailData(int id);
+	
 }

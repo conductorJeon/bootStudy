@@ -8,4 +8,6 @@ public interface CampingService {
 	public List<CampingVO> campingListData(int start);
 	
 	public int campingTotalPage();
+	
+	public CampingVO campingDetailData(int id);
 }
