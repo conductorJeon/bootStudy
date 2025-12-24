@@ -29,13 +29,16 @@ const useSeoulStore = defineStore('seoul', {
 		startPage: 0,
 		endPage: 0,
 		type: 1,
-		detail: {}
+		detail: {
+			vo: {},
+			list: []
+		}
 	}),
 	
 	actions: {
 		async seoulListData(type) {
 			this.type = type
-			const res = await axios.get('http://localhost:9090/seoul/list_vue/', {
+			const res = await axios.get('http://localhost:8080/seoul/list_vue/', {
 				params: {
 					page: this.curpage,
 					type: this.type,
@@ -65,6 +68,18 @@ const useSeoulStore = defineStore('seoul', {
 			}
 			
 			return arr
+		},
+		
+		async seoulDetailData(no, type) {
+			const res = await axios.get('http://localhost:8080/seoul/detail_vue/', {
+				params: {
+					no: no,
+					type: type
+				}
+			})
+			
+			console.log(res.data)
+			this.detail = res.data
 		}
 	}
 })

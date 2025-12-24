@@ -1,6 +1,6 @@
 const {defineStore} = Pinia
 
-const usebusanStore = defineStore('busan', {
+const useBusanStore = defineStore('busan', {
 	state: () => ({
 		list: [],
 		curpage: 1,
@@ -8,13 +8,16 @@ const usebusanStore = defineStore('busan', {
 		startPage: 0,
 		endPage: 0,
 		type: 1,
-		detail: {}
+		detail: {
+			vo: {},
+			list: []
+		}
 	}),
 	
 	actions: {
 		async busanListData(type) {
 			this.type = type
-			const res = await axios.get('http://localhost:9090/busan/list_vue/', {
+			const res = await axios.get('http://localhost:8080/busan/list_vue/', {
 				params: {
 					page: this.curpage,
 					type: this.type,
@@ -44,6 +47,17 @@ const usebusanStore = defineStore('busan', {
 			}
 			
 			return arr
+		},
+		
+		async busanDetailData(no) {
+			const res = await axios.get('http://localhost:8080/busan/detail_vue/', {
+				params: {
+					no: no
+				}
+			})
+			
+			console.log(res.data)
+			this.detail = res.data
 		}
 	}
 })
