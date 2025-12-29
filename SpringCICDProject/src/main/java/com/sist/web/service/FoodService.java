@@ -9,7 +9,7 @@ public interface FoodService {
 	
 	public int foodTotalPage();
 	
-	public List<FoodVO> foodFindData(int start, String address, String ss);
+	public List<FoodVO> foodFindData(int start, String address);
 	
 	public int foodFindTotalPage(String address);
 	

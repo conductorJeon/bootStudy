@@ -55,6 +55,22 @@ public class FoodController {
 		
 		return "main/main";
 	}
+	
+	@GetMapping("/food/find")
+	public String food_find(Model model) {
+		model.addAttribute("main_jsp", "../food/find.jsp");
+		return "main/main";
+	}
+	
+	@GetMapping("/food/detail_vue")
+	public String food_detail_vue(@RequestParam("fno") int fno, Model model) {
+		FoodVO vo = fService.foodDetailData(fno);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("main_jsp", "../food/find_detail.jsp");
+		
+		return "main/main";
+	}
 }
 
 

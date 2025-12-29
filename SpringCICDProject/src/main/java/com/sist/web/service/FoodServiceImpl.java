@@ -27,9 +27,9 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Override
-	public List<FoodVO> foodFindData(int start, String address, String ss) {
+	public List<FoodVO> foodFindData(int start, String address) {
 		// TODO Auto-generated method stub
-		return mapper.foodFindData(start, address, ss);
+		return mapper.foodFindData(start, address);
 	}
 
 	@Override

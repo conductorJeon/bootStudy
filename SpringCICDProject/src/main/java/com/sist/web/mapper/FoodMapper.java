@@ -30,7 +30,7 @@ public interface FoodMapper {
 		  + "WHERE address LIKE'%'||#{address}||'%' "
 		  + "ORDER BY fno ASC) "
 		  + "OFFSET #{start} ROWS FETCH NEXT 12 ROWS ONLY")
-	public List<FoodVO> foodFindData(@Param("start") int start,@Param("address") String address, @Param("ss") String ss);
+	public List<FoodVO> foodFindData(@Param("start") int start,@Param("address") String address);
 	
 	@Select("SELECT CEIL(COUNT(*) / 12.0) FROM menupan_food "
 		  + "WHERE address LIKE '%'||#{address}||'%'")
@@ -41,8 +41,41 @@ public interface FoodMapper {
 		  + "WHERE fno = #{fno}")
 	public void foodHitIncrement(int fno);
 	
-	@Select("SELECT fno, name, poster, address, phone, type, time, parking, score, theme, content "
+	@Select("SELECT fno, name, poster, address, phone, type, time, parking, price, score, theme, content "
 		  + "FROM menupan_food "
 		  + "WHERE fno = #{fno}")
 	public FoodVO foodDetailData(int fno);
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
