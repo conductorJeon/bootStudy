@@ -78,11 +78,10 @@ const useFoodStore = defineStore('food', {
 					type: this.type
 				}
 			})
-			
+			this.sessionId = res.data.sessionId
 			console.log(res.data)
 			this.reply = res.data.rList
 			this.cno = res.data.cno
-			this.sessionId = res.data.sessionId
 		},
 		
 		async foodReplyInsert(cno, msgRef) {

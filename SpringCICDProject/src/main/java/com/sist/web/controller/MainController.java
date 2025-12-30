@@ -11,4 +11,9 @@ public class MainController {
 		model.addAttribute("main_jsp", "../main/home.jsp");
 		return "main/main";
 	}
+	
+	@GetMapping("/demo")
+	public String main(Model model) {
+		return "main/demo";
+	}
 }

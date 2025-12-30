@@ -13,7 +13,9 @@ import com.sist.web.vo.BusanVO;
 @Mapper
 @Repository
 public interface BusanMapper {
+	
 	public List<BusanVO> busanListData(Map map);
+	
 	public int busanTotalPage(Map map);
 	
 	@Update("UPDATE busantravel SET "

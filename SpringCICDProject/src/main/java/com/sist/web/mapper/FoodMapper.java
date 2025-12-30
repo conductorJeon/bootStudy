@@ -13,6 +13,7 @@ import com.sist.web.vo.FoodVO;
 @Mapper
 @Repository
 public interface FoodMapper {
+
 	public List<FoodVO> foodNearData4(String address);
 	
 	@Select("SELECT fno, name, poster "
@@ -27,7 +28,7 @@ public interface FoodMapper {
 	@Select("SELECT fno, name, poster "
 		  + "FROM (SELECT fno, name, poster "
 		  + "FROM menupan_food "
-		  + "WHERE address LIKE'%'||#{address}||'%' "
+		  + "WHERE address LIKE '%'||#{address}||'%' "
 		  + "ORDER BY fno ASC) "
 		  + "OFFSET #{start} ROWS FETCH NEXT 12 ROWS ONLY")
 	public List<FoodVO> foodFindData(@Param("start") int start,@Param("address") String address);
